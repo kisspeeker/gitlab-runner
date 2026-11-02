@@ -1,0 +1,11 @@
+variables:
+  PRODUCTION_DEPLOY_TARGET: "node-eu-marseille-01"
+
+# default:
+#   tags:
+#     - self-hosted
+
+include:
+  - project: "kisspeeker/shared-ci"
+    ref: master
+    file: /presets/app.yml

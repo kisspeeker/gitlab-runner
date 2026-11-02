@@ -1,0 +1,22 @@
+concurrent = 4
+check_interval = 0
+
+[[runners]]
+name = "self-hosted"
+url = "https://gitlab.com"
+token = "${GITLAB_RUNNER_TOKEN}"
+executor = "docker"
+limit = 4
+request_concurrency = 2
+output_limit = 4096
+
+[runners.docker]
+# renovate: datasource=docker depName=docker
+image = "docker:27.5.1-cli"
+pull_policy = "always"
+privileged = false
+services_privileged = true
+allowed_privileged_services = ["docker:*-dind-rootless", "docker:dind-rootless", "docker.io/library/docker:*-dind-rootless", "docker.io/library/docker:dind-rootless"]
+volumes = ["/runner/services/docker", "/cache"]
+shm_size = 0
+disable_cache = false

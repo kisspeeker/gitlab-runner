@@ -1,0 +1,11 @@
+[tools]
+sops = "3.13.3"
+age = "1.3.2"
+
+[tasks.build]
+run = """
+sops exec-env \
+  --same-process \
+  "${TGCLOUD_SECRETS_FILE:-secrets.production.sops.env}" \
+  'docker compose up -d'
+"""
